@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEON CLICKER</title>
+    <style>
+        body {
+            background-color: #050508;
+            color: #ffffff;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            user-select: none;
+        }
+
+        .score-board {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 0 0 10px #00f3ff, 0 0 20px #00f3ff, 0 0 40px #00f3ff;
+        }
+
+        .stats {
+            font-size: 1.2rem;
+            color: #a0a0a0;
+            margin-top: 10px;
+            text-shadow: 0 0 5px #a0a0a0;
+        }
+
+        .main-btn {
+            background: transparent;
+            border: 3px solid #ff003c;
+            color: #ff003c;
+            font-size: 2rem;
+            font-weight: bold;
+            padding: 30px 60px;
+            cursor: pointer;
+            border-radius: 15px;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px #ff003c, inset 0 0 20px #ff003c;
+            transition: all 0.1s ease-in-out;
+            margin-bottom: 50px;
+        }
+
+        .main-btn:active {
+            transform: scale(0.92);
+            box-shadow: 0 0 40px #ff003c, inset 0 0 40px #ff003c;
+            background: rgba(255, 0, 60, 0.1);
+        }
+
+        .upgrades {
+            display: flex;
+            gap: 20px;
+        }
+
+        .upgrade-btn {
+            background: #0a0a12;
+            border: 2px solid #00f3ff;
+            color: #00f3ff;
+            padding: 15px 25px;
+            font-size: 1rem;
+            font-family: inherit;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #00f3ff;
+            transition: 0.2s;
+            text-align: center;
+            min-width: 220px;
+        }
+
+        .upgrade-btn:hover:not(:disabled) {
+            background: #00f3ff;
+            color: #000;
+            box-shadow: 0 0 25px #00f3ff;
+        }
+
+        .upgrade-btn:disabled {
+            border-color: #333;
+            color: #555;
+            box-shadow: none;
+            cursor: not-allowed;
+            background: transparent;
+        }
+
+        .cost {
+            display: block;
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="score-board">
+        <h1 id="score">0</h1>
+        <div class="stats">
+            🪙 В секунду: <span id="auto-rate">1</span> | ⚡ За клик: <span id="click-rate">1</span>
+        </div>
+    </div>
+
+    <button class="main-btn" id="main-btn">ФАРМ</button>
+
+    <div class="upgrades">
+        <button class="upgrade-btn" id="click-up">
+            ПРОКАЧАТЬ КЛИК (+1)
+            <span class="cost" id="click-cost">Цена: 10 🪙</span>
+        </button>
+        <button class="upgrade-btn" id="auto-up">
+            АВТОФАРМ (+1/сек)
+            <span class="cost" id="auto-cost">Цена: 50 🪙</span>
+        </button>
+    </div>
+
+    <script>
+        // Основные переменные
+        let coins = 0;
+        let clickPower = 1;
+        let autoPower = 1;
+        
+        // Цены на апгрейды
+        let clickUpgradeCost = 10;
+        let autoUpgradeCost = 50;
+
+        // Элементы интерфейса
+        const scoreEl = document.getElementById('score');
+        const autoRateEl = document.getElementById('auto-rate');
+        const clickRateEl = document.getElementById('click-rate');
+        
+        const mainBtn = document.getElementById('main-btn');
+        const clickUpBtn = document.getElementById('click-up');
+        const autoUpBtn = document.getElementById('auto-up');
+        
+        const clickCostEl = document.getElementById('click-cost');
+        const autoCostEl = document.getElementById('auto-cost');
+
+        // Функция обновления экрана
+        function updateUI() {
+            scoreEl.innerText = Math.floor(coins);
+            autoRateEl.innerText = autoPower;
+            clickRateEl.innerText = clickPower;
+            
+            clickCostEl.innerText = `Цена: ${clickUpgradeCost} 🪙`;
+            autoCostEl.innerText = `Цена: ${autoUpgradeCost} 🪙`;
+
+            // Делаем кнопки неактивными, если не хватает монет
+            clickUpBtn.disabled = coins < clickUpgradeCost;
+            autoUpBtn.disabled = coins < autoUpgradeCost;
+        }
+
+        // Обработка главного клика
+        mainBtn.addEventListener('click', () => {
+            coins += clickPower;
+            updateUI();
+        });
+
+        // Прокачка клика
+        clickUpBtn.addEventListener('click', () => {
+            if (coins >= clickUpgradeCost) {
+                coins -= clickUpgradeCost;
+                clickPower++;
+                clickUpgradeCost = Math.floor(clickUpgradeCost * 1.6); // Увеличиваем цену
+                updateUI();
+            }
+        });
+
+        // Прокачка автофарма
+        autoUpBtn.addEventListener('click', () => {
+            if (coins >= autoUpgradeCost) {
+                coins -= autoUpgradeCost;
+                autoPower++;
+                autoUpgradeCost = Math.floor(autoUpgradeCost * 1.6); // Увеличиваем цену
+                updateUI();
+            }
+        });
+
+        // Цикл автофарма (каждую секунду)
+        setInterval(() => {
+            coins += autoPower;
+            updateUI();
+        }, 1000);
+
+        // Инициализация
+        updateUI();
+    </script>
+</body>
+</html>
