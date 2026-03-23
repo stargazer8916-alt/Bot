@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Игровой бот — гайд</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+    background: #0f172a;
+    color: #e2e8f0;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background: #1e293b;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 20px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    color: #38bdf8;
+}
+
+p {
+    line-height: 1.6;
+}
+
+strong {
+    color: #facc15;
+}
+
+.button {
+    display: block;
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 12px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.button:hover {
+    transform: scale(1.03);
+}
+
+.channel { background: #3b82f6; color: white; }
+.chat { background: #22c55e; color: white; }
+.bot { background: #a855f7; color: white; }
+.dm { background: #f97316; color: white; }
+
+.command {
+    background: #0f172a;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+    font-family: monospace;
+}
+
+.footer {
+    text-align: center;
+    opacity: 0.6;
+    margin-top: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+<h1>🎮 Полный гайд по игровому боту</h1>
+<p>
+Добро пожаловать в <strong>игровой Telegram-бот</strong> с <strong>экономикой</strong>, 
+<strong>кланами</strong> и множеством <strong>PvP / PvE режимов</strong>.
+</p>
+</div>
+
+<div class="card">
+<h2>🌐 Платформа проекта</h2>
+
+<a class="button channel" href="https://t.me/v4ntychannel">📢 Канал</a>
+<a class="button chat" href="https://t.me/+xe3PNbAOREgxMGZi">💬 Чат</a>
+<a class="button bot" href="https://t.me/v4ntygamebot">🤖 Игровой бот</a>
+<a class="button dm" href="https://t.me/v4nty">👤 ЛС</a>
+
+</div>
+
+<div class="card">
+<h2>🚀 Основные команды</h2>
+
+<div class="command">/start — 🚀 Регистрация + реферальная система</div>
+<div class="command">/menu — ⚡️ Web App кликер</div>
+<div class="command">/clicker — ⛏️ Кликер</div>
+<div class="command">/balance — 💎 Баланс</div>
+<div class="command">/daily — 🎁 Бонус</div>
+<div class="command">/help — 📚 Все команды</div>
+
+</div>
+
+<div class="card">
+<h2>💰 Экономика</h2>
+
+<div class="command">/promo [код] — 🎫 Промокод</div>
+<div class="command">/buy — 🛒 Покупка алмазов</div>
+<div class="command">/donate — 💎 Донат</div>
+<div class="command">/gift [ID] [сумма] — 🎁 Передача</div>
+
+</div>
+
+<div class="card">
+<h2>🛒 Магазин</h2>
+
+<div class="command">/shop — 🛍 Магазин</div>
+<div class="command">/upgrade_clicker — 🚀 Апгрейд</div>
+
+</div>
+
+<div class="card">
+<h2>🎟 Лотерея</h2>
+
+<div class="command">/lottery [кол-во] — 🎟 Билеты</div>
+
+</div>
+
+<div class="card">
+<h2>⚔️ Кланы</h2>
+
+<p><strong>Основные:</strong></p>
+<div class="command">/clan — Меню</div>
+<div class="command">/clan create [name]</div>
+<div class="command">/clan join [id]</div>
+
+<p><strong>Управление:</strong></p>
+<div class="command">/clan open</div>
+<div class="command">/clan close</div>
+<div class="command">/clan desc [текст]</div>
+
+<p><strong>Экономика:</strong></p>
+<div class="command">/clan deposit [сумма]</div>
+<div class="command">/clan donate [сумма]</div>
+
+<p><strong>Инфо:</strong></p>
+<div class="command">/clan info</div>
+<div class="command">/claninfo</div>
+<div class="command">/clantop</div>
+
+<p><strong>Удаление:</strong></p>
+<div class="command">/clan_delete</div>
+
+</div>
+
+<div class="card">
+<h2>🎮 Игры</h2>
+
+<p><strong>PvP:</strong></p>
+<div class="command">/duel [ставка]</div>
+<div class="command">/race [ставка]</div>
+<div class="command">/brawl [ставка]</div>
+<div class="command">/roulette [ставка]</div>
+
+<p><strong>PvE:</strong></p>
+<div class="command">/case</div>
+<div class="command">/mines [ставка]</div>
+<div class="command">/safe [ставка]</div>
+<div class="command">/trade [ставка]</div>
+
+<p><strong>Кооператив:</strong></p>
+<div class="command">/boss</div>
+<div class="command">/heist [ставка]</div>
+
+</div>
+
+<div class="card">
+<h2>💡 Быстрый старт</h2>
+
+<div class="command">1. /start</div>
+<div class="command">2. /daily</div>
+<div class="command">3. /clicker</div>
+<div class="command">4. /clan create</div>
+<div class="command">5. /clan deposit</div>
+
+</div>
+
+<div class="card">
+<h2>⚠️ Правила</h2>
+
+<p>💎 Баланс влияет на <strong>рейтинг</strong></p>
+<p>🔒 Закрытый клан — нельзя войти</p>
+<p>📝 До <strong>30 символов</strong></p>
+<p>🚫 Ссылки запрещены</p>
+<p>🗑 Только владелец удаляет</p>
+
+</div>
+
+<div class="card">
+<h2>🏆 Итог</h2>
+
+<p>
+Бот сочетает:
+<strong>экономику</strong>, 
+<strong>кланы</strong>, 
+<strong>игры</strong> и 
+<strong>социальные механики</strong>.
+</p>
+
+<p>
+Ты можешь:
+<strong>фармить</strong>, 
+<strong>играть PvP</strong>, 
+<strong>строить клан</strong> и 
+<strong>попасть в ТОП</strong>.
+</p>
+
+</div>
+
+<div class="footer">
+🔥 Удачи в игре!
+</div>
+
+</div>
+
+<script>
+// Небольшой эффект клика
+document.querySelectorAll('.button').forEach(btn => {
+    btn.addEventListener('click', () => {
+        btn.style.transform = "scale(0.95)";
+        setTimeout(() => {
+            btn.style.transform = "scale(1)";
+        }, 150);
+    });
+});
+</script>
+
+</body>
+  </html>
